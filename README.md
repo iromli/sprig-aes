@@ -1,3 +1,5 @@
+[![Testcases](https://github.com/iromli/sprig-aes/actions/workflows/python-package.yml/badge.svg)](https://github.com/iromli/sprig-aes/actions/workflows/python-package.yml)
+
 # sprig-aes
 
 Library and CLI to encrypt and decrypt text using AES CBC mode.
