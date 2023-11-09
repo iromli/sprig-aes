@@ -1,20 +1,24 @@
 import pytest
 
 
-@pytest.mark.parametrize("text, key, encrypted_text", [
-    ("a secret message", "6Jsv61H7fbkeIkRvUpnZ98fu", b"zLBGM41dAfA2JuIkVHRKaxO7SO8JXrhsDdD3W6XwPrQVsORCA0a4WpPG2rm8GG9C"),
-    (b"random text", b"6Jsv61H7fbkeIkRvUpnZ98fu", b"zLBGM41dAfA2JuIkVHRKaxydwr8+IClmaf69wqQgAd8="),
-
-])
-def test_aes_encrypt(text, key, encrypted_text):
+def test_aes_encrypt(keyed_data, keyless_data):
     from sprig_aes.core import sprig_encrypt_aes
-    assert sprig_encrypt_aes(text, key) == encrypted_text
+
+    for data in [keyed_data, keyless_data]:
+        assert sprig_encrypt_aes(data.text, data.key).decode() == data.encrypted_text
 
 
-@pytest.mark.parametrize("encrypted_text, key, text", [
-    ("zLBGM41dAfA2JuIkVHRKaxO7SO8JXrhsDdD3W6XwPrQVsORCA0a4WpPG2rm8GG9C", "6Jsv61H7fbkeIkRvUpnZ98fu", b"a secret message"),
-    (b"zLBGM41dAfA2JuIkVHRKaxydwr8+IClmaf69wqQgAd8=", b"6Jsv61H7fbkeIkRvUpnZ98fu", b"random text"),
-])
-def test_aes_decrypt(encrypted_text, key, text):
+def test_aes_decrypt(keyed_data, keyless_data):
     from sprig_aes.core import sprig_decrypt_aes
-    assert sprig_decrypt_aes(encrypted_text, key) == text
+
+    for data in [keyed_data, keyless_data]:
+        assert sprig_decrypt_aes(data.encrypted_text, data.key).decode() == data.text
+
+
+@pytest.mark.parametrize("value, transformed", [
+    ("string", b"string"),
+    (b"bytestring", b"bytestring"),
+])
+def test_as_bytes(value, transformed):
+    from sprig_aes.core import _as_bytes
+    assert _as_bytes(value) == transformed

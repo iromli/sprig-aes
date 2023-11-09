@@ -1,10 +1,21 @@
 import base64
 import os
-import typing as _t
+from typing import AnyStr
 
 from cryptography.hazmat.primitives.ciphers import algorithms
 from cryptography.hazmat.primitives.ciphers import Cipher
 from cryptography.hazmat.primitives.ciphers import modes
+
+
+def _as_bytes(value: AnyStr) -> bytes:
+    if isinstance(value, str):
+        return value.encode()
+    return value
+
+
+def _fill_bytes(value: AnyStr) -> bytes:
+    # fill the bytes and collect the first 32 bytes at maximum
+    return (_as_bytes(value) + bytes(32))[:32]
 
 
 class SprigAES:
@@ -12,21 +23,10 @@ class SprigAES:
 
     BLOCK_SIZE = 16
 
-    @staticmethod
-    def _as_bytes(value: _t.AnyStr) -> bytes:
-        if isinstance(value, str):
-            return value.encode()
-        return value
-
     @classmethod
-    def _fill_bytes(cls, value: _t.AnyStr) -> bytes:
-        # fill the bytes and collect the first 32 bytes at maximum
-        return (cls._as_bytes(value) + bytes(32))[:32]
-
-    @classmethod
-    def encrypt(cls, text: _t.AnyStr, key: _t.AnyStr) -> bytes:
-        key_bytes = cls._fill_bytes(key)
-        text_bytes = cls._as_bytes(text)
+    def encrypt(cls, text: AnyStr, key: AnyStr) -> bytes:
+        key_bytes = _fill_bytes(key)
+        text_bytes = _as_bytes(text)
 
         # fill the block size of text_bytes
         padding = cls.BLOCK_SIZE - len(text_bytes) % cls.BLOCK_SIZE
@@ -42,9 +42,9 @@ class SprigAES:
         return base64.b64encode(encrypted_text)
 
     @classmethod
-    def decrypt(cls, text: _t.AnyStr, key: _t.AnyStr) -> bytes:
-        key_bytes = cls._fill_bytes(key)
-        ciphertext = base64.b64decode(cls._as_bytes(text))
+    def decrypt(cls, text: AnyStr, key: AnyStr) -> bytes:
+        key_bytes = _fill_bytes(key)
+        ciphertext = base64.b64decode(_as_bytes(text))
 
         iv = ciphertext[:cls.BLOCK_SIZE]
         text_bytes = ciphertext[cls.BLOCK_SIZE:]

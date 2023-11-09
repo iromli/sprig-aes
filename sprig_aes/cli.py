@@ -26,10 +26,6 @@ def encrypt(text: str, key: str, key_file: str) -> None:
         with click.open_file(key_file, "r") as f:
             key = f.read().strip()
 
-    if not key:
-        click.echo(click.style("Cannot resolve key either from --key or --key-file options", fg="yellow"))
-        raise click.Abort()
-
     enc_text = sprig_encrypt_aes(text, key)
     click.echo(enc_text.decode())
 
@@ -46,10 +42,6 @@ def decrypt(text: str, key: str, key_file: str) -> None:
     if key_file:
         with click.open_file(key_file, "r") as f:
             key = f.read().strip()
-
-    if not key:
-        click.echo(click.style("Cannot resolve key either from --key or --key-file options", fg="yellow"))
-        raise click.Abort()
 
     dec_text = sprig_decrypt_aes(text, key)
     click.echo(dec_text.decode())

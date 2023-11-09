@@ -1,83 +1,55 @@
 from click.testing import CliRunner
 
 
-def test_cli_encrypt():
+def test_cli_encrypt(keyed_data, keyless_data):
     from sprig_aes.cli import encrypt
 
-    runner = CliRunner()
-    result = runner.invoke(
-        encrypt,
-        ["a secret message", "--key", "6Jsv61H7fbkeIkRvUpnZ98fu"],
-    )
-    assert result.exit_code == 0
-    assert result.output.strip() == "zLBGM41dAfA2JuIkVHRKaxO7SO8JXrhsDdD3W6XwPrQVsORCA0a4WpPG2rm8GG9C"
+    for data in [keyed_data, keyless_data]:
+        runner = CliRunner()
+        result = runner.invoke(encrypt, [data.text, "--key", data.key])
 
-
-def test_cli_encrypt_key_file():
-    from sprig_aes.cli import encrypt
-
-    runner = CliRunner()
-
-    with runner.isolated_filesystem():
-        with open("key.txt", "w") as f:
-            f.write("6Jsv61H7fbkeIkRvUpnZ98fu")
-
-        result = runner.invoke(
-            encrypt,
-            ["a secret message", "--key-file", "key.txt"],
-        )
         assert result.exit_code == 0
-        assert result.output.strip() == "zLBGM41dAfA2JuIkVHRKaxO7SO8JXrhsDdD3W6XwPrQVsORCA0a4WpPG2rm8GG9C"
+        assert result.output.strip() == data.encrypted_text
 
 
-def test_cli_encrypt_no_key():
+def test_cli_encrypt_key_file(keyed_data, keyless_data):
     from sprig_aes.cli import encrypt
 
-    runner = CliRunner()
-    result = runner.invoke(
-        encrypt,
-        ["a secret message"],
-    )
-    assert result.exit_code == 1
-    assert "Aborted" in result.output.strip()
+    for data in [keyed_data, keyless_data]:
+        runner = CliRunner()
+
+        with runner.isolated_filesystem():
+            with open("key.txt", "w") as f:
+                f.write(data.key)
+
+            result = runner.invoke(
+                encrypt,
+                [data.text, "--key-file", "key.txt"],
+            )
+            assert result.exit_code == 0
+            assert result.output.strip() == data.encrypted_text
 
 
-def test_cli_decrypt():
+def test_cli_decrypt(keyed_data, keyless_data):
     from sprig_aes.cli import decrypt
 
-    runner = CliRunner()
-    result = runner.invoke(
-        decrypt,
-        ["zLBGM41dAfA2JuIkVHRKaxO7SO8JXrhsDdD3W6XwPrQVsORCA0a4WpPG2rm8GG9C", "--key", "6Jsv61H7fbkeIkRvUpnZ98fu"],
-    )
-    assert result.exit_code == 0
-    assert result.output.strip() == "a secret message"
-
-
-def test_cli_decrypt_key_file():
-    from sprig_aes.cli import decrypt
-
-    runner = CliRunner()
-
-    with runner.isolated_filesystem():
-        with open("key.txt", "w") as f:
-            f.write("6Jsv61H7fbkeIkRvUpnZ98fu")
-
-        result = runner.invoke(
-            decrypt,
-            ["zLBGM41dAfA2JuIkVHRKaxO7SO8JXrhsDdD3W6XwPrQVsORCA0a4WpPG2rm8GG9C", "--key-file", "key.txt"],
-        )
+    for data in [keyed_data, keyless_data]:
+        runner = CliRunner()
+        result = runner.invoke(decrypt, [data.encrypted_text, "--key", data.key])
         assert result.exit_code == 0
-        assert result.output.strip() == "a secret message"
+        assert result.output.strip() == data.text
 
 
-def test_cli_decrypt_no_key():
+def test_cli_decrypt_key_file(keyed_data, keyless_data):
     from sprig_aes.cli import decrypt
 
-    runner = CliRunner()
-    result = runner.invoke(
-        decrypt,
-        ["zLBGM41dAfA2JuIkVHRKaxO7SO8JXrhsDdD3W6XwPrQVsORCA0a4WpPG2rm8GG9C"],
-    )
-    assert result.exit_code == 1
-    assert "Aborted" in result.output.strip()
+    for data in [keyed_data, keyless_data]:
+        runner = CliRunner()
+
+        with runner.isolated_filesystem():
+            with open("key.txt", "w") as f:
+                f.write(data.key)
+
+            result = runner.invoke(decrypt, [data.encrypted_text, "--key-file", "key.txt"])
+            assert result.exit_code == 0
+            assert result.output.strip() == data.text
