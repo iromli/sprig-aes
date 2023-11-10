@@ -1,4 +1,4 @@
-[![Testcases](https://github.com/iromli/sprig-aes/actions/workflows/python-package.yml/badge.svg)](https://github.com/iromli/sprig-aes/actions/workflows/python-package.yml)
+[![Testcases](https://github.com/iromli/sprig-aes/actions/workflows/testcases.yml/badge.svg)](https://github.com/iromli/sprig-aes/actions/workflows/testcases.yml)
 
 # sprig-aes
 
