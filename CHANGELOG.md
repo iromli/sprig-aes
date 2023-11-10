@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/iromli/sprig-aes/compare/v0.1.0...v0.2.0) (2023-11-10)
+
+
+### Features
+
+* allow empty key ([bd70a61](https://github.com/iromli/sprig-aes/commit/bd70a61f9a6a619b35529dbc8ee2d2c4a2fef6b0))
+
 ## 0.1.0 (2023-11-09)
 
 
