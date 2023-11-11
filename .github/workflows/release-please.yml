@@ -24,3 +24,4 @@ jobs:
               {"type":"chore","section":"Miscellaneous","hidden":true},
               {"type":"ci","section":"Continuous Integration","hidden":true}
             ]
+          include-v-in-tag: false
