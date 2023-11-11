@@ -7,6 +7,10 @@
 
 * remove editable package from requirements.txt ([d312545](https://github.com/iromli/sprig-aes/commit/d312545053a6a6c4bfa097e0362568c71ec63ec6))
 
+### Miscellaneous
+
+* use src-layout for main source code ([6a5180e](https://github.com/iromli/sprig-aes/commit/6a5180e11198a8a6eacf3d7ba40a271d93c39a4b))
+
 ## [0.2.0](https://github.com/iromli/sprig-aes/compare/v0.1.0...v0.2.0) (2023-11-10)
 
 
