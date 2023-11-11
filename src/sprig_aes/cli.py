@@ -15,7 +15,7 @@ def cli() -> None:  # pragma: no cover
 
 @cli.command(help="Encrypt plain text using AES CBC mode.")
 @click.argument("text")
-@click.option("--key", help="Key string.")
+@click.option("--key", help="Key string.", default="")
 @click.option(
     "--key-file",
     type=click.Path(True, resolve_path=True, allow_dash=True),
@@ -32,7 +32,7 @@ def encrypt(text: str, key: str, key_file: str) -> None:
 
 @cli.command(help="Decrypt encrypted text using AES CBC mode.")
 @click.argument("text")
-@click.option("--key", help="Key string.")
+@click.option("--key", help="Key string.", default="")
 @click.option(
     "--key-file",
     type=click.Path(True, resolve_path=True, allow_dash=True),
