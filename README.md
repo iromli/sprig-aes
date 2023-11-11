@@ -9,6 +9,13 @@ Note that the implementation is ported from:
 1. http://masterminds.github.io/sprig/crypto.html#encryptaes
 2. http://masterminds.github.io/sprig/crypto.html#decryptaes
 
+
+## Installation
+
+```
+pip install sprig-aes
+```
+
 ## Using The Library
 
 ```py3
