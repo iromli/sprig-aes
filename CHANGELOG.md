@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/iromli/sprig-aes/compare/v0.2.0...v0.3.0) (2023-11-11)
+
+
+### Bug Fixes
+
+* remove editable package from requirements.txt ([d312545](https://github.com/iromli/sprig-aes/commit/d312545053a6a6c4bfa097e0362568c71ec63ec6))
+
 ## [0.2.0](https://github.com/iromli/sprig-aes/compare/v0.1.0...v0.2.0) (2023-11-10)
 
 
