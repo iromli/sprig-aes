@@ -1,6 +1,6 @@
 [project]
 name = "sprig-aes"
-version = "0.3.0-dev"
+version = "0.3.0"
 description = ""
 readme = "README.md"
 license = {file = "LICENSE"}
