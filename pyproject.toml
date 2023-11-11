@@ -26,6 +26,9 @@ requires-python = ">=3.9"
 [project.scripts]
 sprig-aes = "sprig_aes.cli:cli"
 
+[project.urls]
+"Homepage" = "https://github.com/iromli/sprig-aes"
+
 [build-system]
 requires = [
     # The minimum setuptools version is specific to the PEP 517 backend,
