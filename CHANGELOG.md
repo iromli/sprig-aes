@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/iromli/sprig-aes/compare/v0.3.0...0.4.0) (2023-11-13)
+
+
+### Bug Fixes
+
+* conform to correct license classifier ([e4099cd](https://github.com/iromli/sprig-aes/commit/e4099cd21619786fb786148d0f47bc7b06a2e671))
+* set key to empty string if option is omitted ([d9dee88](https://github.com/iromli/sprig-aes/commit/d9dee88c6bc72ce59a3b74d9624d1122967d2d1a))
+
 ## [0.3.0](https://github.com/iromli/sprig-aes/compare/v0.2.0...v0.3.0) (2023-11-11)
 
 
