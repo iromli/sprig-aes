@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/iromli/sprig-aes/compare/0.4.0...0.5.0) (2023-11-22)
+
+
+### Features
+
+* remove class-based methods in favor of functions ([b5b8acd](https://github.com/iromli/sprig-aes/commit/b5b8acdb845e6473b8455fb8b1beff7dc4db0ab1))
+
 ## [0.4.0](https://github.com/iromli/sprig-aes/compare/v0.3.0...0.4.0) (2023-11-13)
 
 
