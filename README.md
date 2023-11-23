@@ -20,6 +20,7 @@ pip install sprig-aes
 
 ```py3
 from sprig_aes import sprig_encrypt_aes
+from sprig_aes import sprig_decrypt_aes
 
 key = "6Jsv61H7fbkeIkRvUpnZ98fu"
 enc_text = sprig_encrypt_aes("a secret message", key)
@@ -29,6 +30,6 @@ dec_text = sprig_decrypt_aes(enc_text, key)
 ## Using The CLI
 
 ```sh
-sprig-aes encrypt 'a secret message' --key 6Jsv61H7fbkeIkRvUpnZ98fu
-sprig-aes decrypt 'zLBGM41dAfA2JuIkVHRKaxydwr8+IClmaf69wqQgAd8=' --key 6Jsv61H7fbkeIkRvUpnZ98fu
+enc_text=$(sprig-aes encrypt 'a secret message' --key 6Jsv61H7fbkeIkRvUpnZ98fu)
+sprig-aes decrypt "$enc_text" --key 6Jsv61H7fbkeIkRvUpnZ98fu
 ```
