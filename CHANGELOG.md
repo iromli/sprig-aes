@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/iromli/sprig-aes/compare/0.5.0...0.6.0) (2024-12-26)
+
+
+### Features
+
+* add support for self-contained Python zipapps ([#7](https://github.com/iromli/sprig-aes/issues/7)) ([78156a5](https://github.com/iromli/sprig-aes/commit/78156a5a73966684e344d10da8e34b84c505ed5f))
+
 ## [0.5.0](https://github.com/iromli/sprig-aes/compare/0.4.0...0.5.0) (2023-11-22)
 
 
