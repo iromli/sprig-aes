@@ -12,8 +12,20 @@ Note that the implementation is ported from:
 
 ## Installation
 
+Typical installation using `pip`:
+
 ```
 pip install sprig-aes
+```
+
+This will install the `sprig_aes` library and `sprig-aes` CLI.
+
+Note that as per version `0.6.0`, users may install self-contained Python zipapps (CLI-only) using the following command:
+
+```
+pip install shiv
+make zipapp
+mv sprig-aes.pyz ~/.local/bin/sprig-aes
 ```
 
 ## Using The Library
