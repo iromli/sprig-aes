@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.0](https://github.com/iromli/sprig-aes/compare/0.6.0...0.7.0) (2024-12-31)
+
+
+### docs
+
+* add example of new CLI commands ([c9600e8](https://github.com/iromli/sprig-aes/commit/c9600e87ee92c89ddd2d833c5eb3fb23b23c0c0a))
+
+
+### Features
+
+* add support to encrypt and decrypt contents of a file ([1fff069](https://github.com/iromli/sprig-aes/commit/1fff0697f3abbcf3f81b1b1a045929743dd09728))
+
 ## [0.6.0](https://github.com/iromli/sprig-aes/compare/0.5.0...0.6.0) (2024-12-26)
 
 
