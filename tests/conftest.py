@@ -1,3 +1,4 @@
+import json
 from dataclasses import dataclass
 from typing import AnyStr
 
@@ -26,4 +27,22 @@ def keyless_data():
         "empty key",
         "",
         "3JXAeKJAiYmtSKIUkoQgh64XvuM09NNis3X6YQLYRcE=",
+    )
+
+
+@pytest.fixture()
+def json_keyed_data():
+    yield _Fixture(
+        json.dumps({"first_name": "John", "last_name": "Doe"}),
+        "6Jsv61H7fbkeIkRvUpnZ98fu",
+        "zLBGM41dAfA2JuIkVHRKa1NdwBm8w2pwunVEKlOmGjt7xmSihZxt92C9e0Y1e7vi5IHOWw1Y1l1z7oR5A69etg==",
+    )
+
+
+@pytest.fixture()
+def json_keyless_data():
+    yield _Fixture(
+        json.dumps({"first_name": "John", "last_name": "Doe"}),
+        "",
+        "3JXAeKJAiYmtSKIUkoQghz+CJtJxNwoqP4TzcCedyCC8LsU2Kz8FbbW5tBRDHKtatHi9MdLqHIaPhwEI/Rx3sQ==",
     )

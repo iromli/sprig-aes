@@ -45,3 +45,39 @@ def decrypt(text: str, key: str, key_file: str) -> None:
 
     dec_text = sprig_decrypt_aes(text, key)
     click.echo(dec_text.decode())
+
+
+@cli.command(help="Encrypt contents of a file using AES CBC mode.")
+@click.argument("path", type=click.Path(True, resolve_path=True, allow_dash=True))
+@click.option("--key", help="Key string.", default="")
+@click.option(
+    "--key-file",
+    type=click.Path(True, resolve_path=True, allow_dash=True),
+    help="Read key from file (overrides --key).",
+)
+def encrypt_file(path: str, key: str, key_file: str) -> None:
+    if key_file:
+        with click.open_file(key_file, "r") as f:
+            key = f.read().strip()
+
+    with click.open_file(path, "r") as f:
+        enc_text = sprig_encrypt_aes(f.read(), key)
+        click.echo(enc_text.decode())
+
+
+@cli.command(help="Decrypt contents of a file using AES CBC mode.")
+@click.argument("path", type=click.Path(True, resolve_path=True, allow_dash=True))
+@click.option("--key", help="Key string.", default="")
+@click.option(
+    "--key-file",
+    type=click.Path(True, resolve_path=True, allow_dash=True),
+    help="Read key from file (overrides --key).",
+)
+def decrypt_file(path: str, key: str, key_file: str) -> None:
+    if key_file:
+        with click.open_file(key_file, "r") as f:
+            key = f.read().strip()
+
+    with click.open_file(path, "r") as f:
+        dec_text = sprig_decrypt_aes(f.read(), key)
+        click.echo(dec_text.decode())
